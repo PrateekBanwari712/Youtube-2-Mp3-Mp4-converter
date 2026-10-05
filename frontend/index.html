@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Youtube-to-Mp3</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div>
+      <h2>Local Yt Converter</h2>
+      <input
+        type="text"
+        id="urlInput"
+        placeholder="Paste Youtube URL here..."
+      />
+      <br />
+      <button id="infoBtn">Get info</button>
+      <br />
+      <div id="information">
+        <img src="" alt="">
+        <div>
+          <span id="hel">Title</span>
+          <span>Duration</span>
+          <span>Duration</span>
+        </div>
+      </div>
+
+      <div id="status"></div>
+    </div>
+
+    <script>
+      function downloadAudio() {
+        const url = document.getElementById("urlInput").value;
+        if (!url) return alert("Please enter a url");
+
+        document.getElementById("status").innerText =
+          "Processing download... Please wait.";
+
+        window.location.href = `http://localhost:3000/api/get-info?url=${encodeURIComponent(url)}`;
+      }
+    </script>
+    <script src="script.js"></script>
+  </body>
+</html>
