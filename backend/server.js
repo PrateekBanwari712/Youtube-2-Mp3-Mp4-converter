@@ -36,7 +36,7 @@ app.get("/api/get-info", async (req, res) => {
     try {
       // Parsing the json output from yt-dlp
       const info = JSON.parse(rawData);
-
+    
       res.status(200).json({
         success: true,
         title: info.title,
@@ -66,7 +66,7 @@ app.get("/api/download-audio", (req, res) => {
   }
 
   res.setHeader("Content-Type", "audio/mpeg");
-  res.setHeader("Content-Disposition", 'attachment; filename="audio.mp3"');
+  res.setHeader("Content-Disposition", `attachment; filename="audio.mp3"`);
 
   const yt = spawn("yt-dlp", [
     "-x", // handles and manages FFmpeg under the hood
@@ -108,12 +108,13 @@ app.get("/api/download-video", (req, res) => {
   }
 
   res.setHeader("Content-Type", "video/mp4");
-  res.setHeader("Content-Disposition", 'attachment; filename="video.mp4');
+  res.setHeader("Content-Disposition", `attachment; filename="video.mp4"`);
 
   const yt = spawn("yt-dlp", [
     "-f",
-    "bv*+ba/b",
+   "bv*[ext=mp4]+ba[ext=m4a]/b[ext=mp4]",
     "--no-playlist",
+    "--remux-video",
     "-o",
     "-",
     url,
