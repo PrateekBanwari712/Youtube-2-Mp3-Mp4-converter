@@ -59,7 +59,7 @@ app.get("/api/get-info", async (req, res) => {
   });
 });
 
-app.get("/api/download", (req, res) => {
+app.get("/api/download-audio", (req, res) => {
   const { url } = req.query;
   if (!YT_REGEX.test(url || "")) {
     return res.status(400).json({ error: "Invalid YouTube URL" });

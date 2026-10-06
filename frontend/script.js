@@ -85,7 +85,7 @@ downloadBtn.addEventListener("click", async () => {
   if (!fetchedUrl) return;
 
   const format = mediaFormat.value;
-  const endpoint = format === "mp4" ? "download-video" : "download";
+  const endpoint = format === "mp4" ? "download-video" : "download-audio";
   const downloadUrl = new URL(`http://localhost:3000/api/${endpoint}`);
   downloadUrl.searchParams.set("url", fetchedUrl);
   downloadBtn.disabled = true;
